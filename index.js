@@ -1,9 +1,13 @@
-async function getValue() {
-    try {
-        const promiseResult = await fetch ('https://fakestoreapi.com/products');
-        const data = await promiseResult.json();
-        console.log(data);
-    } catch (error) {
-        console.log(error);
-    }
-}
+const express = require('express');
+
+const app = express();
+
+const PORT = 5501;
+
+app.get('/', (req, res) => {
+    res.send('Hello, world!')
+})
+
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`); 
+})
