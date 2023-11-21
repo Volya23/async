@@ -4,10 +4,15 @@ const app = express();
 
 const PORT = 5501;
 
-app.get('/', (req, res) => {
-    res.send('Hello, world!')
-})
+const bodyParser = express.json();
 
-app.listen(PORT, () => {
+const {validateUser} = require ('./middlewares/index')
+
+const UserController = require ('./controllers/UserController');
+
+app.post('/user',bodyParser, validateUser, UserController.createUser);
+   
+
+app.listen (PORT, () => {
     console.log(`Server started on port ${PORT}`); 
 })
