@@ -25,6 +25,10 @@ module.exports.getOneUser = (req, res) => {
 module.exports.deleteUser = (req, res) => {
     const {userId} = req.params;
     const user = User.findOne(Number(userId));
-    user.deleteUser();
-    res.send(user);
+    if(user) {
+        user.deleteUser();
+        res.send(user);
+    } else {
+        res.status(404).end();
+    }
 }
